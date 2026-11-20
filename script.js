@@ -124,7 +124,7 @@ let selectedColor = 0;
 // erase：擦除
 // browse：浏览
 
-let mode = "paint";
+let mode = "browse";
 
 let isDrawing = false;
 let activePointer = null;
@@ -326,7 +326,7 @@ function updateColorEditor() {
         currentColor.style.backgroundColor = "white";
 
         currentColorName.textContent =
-            mode === "erase" ? "橡皮擦" : "浏览模式";
+            mode === "erase" ? "橡皮擦" : "不填图";
 
         colorLabelInput.value = "";
         colorLabelInput.disabled = true;
@@ -920,6 +920,5 @@ document.addEventListener("keydown", event => {
 // 22. 启动程序
 // ========================================
 
-renderPalette();
 renderMatrix();
-updateColorEditor();
+setMode("browse");
