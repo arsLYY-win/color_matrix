@@ -10,17 +10,17 @@ const COLUMN_COUNT = 15;
 // 保持15个元素即可
 
 const COLUMN_LABELS = [
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-    "10",
-    "11",
+    "1JohnH",
+    "2AnniB",
+    "3OswaG",
+    "4TonyD",
+    "5MartG",
+    "6EddiG",
+    "7VictB",
+    "8DamiM",
+    "9HeleD",
+    "10EveD",
+    "11ThortH",
     "12",
     "13",
     "14",
@@ -58,25 +58,25 @@ const COLORS = [
 // 也可以在这里提前设置好
 
 const DEFAULT_COLOR_LABELS = [
-    "", // 红色
-    "", // 深红
-    "", // 橙色
-    "", // 琥珀
+    "CH", // 红色
+    "EN", // 深红
+    "TO", // 橙色
+    "LI", // 琥珀
     "", // 黄色
-    "", // 黄绿
-    "", // 绿色
-    "", // 深绿
+    "DI", // 黄绿
+    "ST", // 绿色
+    "KI", // 深绿
     "", // 青绿
     "", // 青色
-    "", // 天蓝
+    "AT", // 天蓝
     "", // 蓝色
-    "", // 靛蓝
+    "ED", // 靛蓝
     "", // 紫色
-    "", // 浅紫
-    "", // 玫红
-    "", // 粉色
-    "", // 棕色
-    "", // 灰色
+    "OS", // 浅紫
+    "MA", // 玫红
+    "VI", // 粉色
+    "BI", // 棕色
+    "QU", // 灰色
     ""  // 黑色
 ];
 
@@ -922,3 +922,15 @@ document.addEventListener("keydown", event => {
 
 renderMatrix();
 setMode("browse");
+// 鼠标滚轮控制调色板横向滚动
+
+palette.addEventListener("wheel", event => {
+
+    if (Math.abs(event.deltaY) > Math.abs(event.deltaX)) {
+
+        event.preventDefault();
+
+        palette.scrollLeft += event.deltaY;
+    }
+
+}, { passive: false });
