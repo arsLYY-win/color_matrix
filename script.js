@@ -379,8 +379,9 @@ function setColorLabel() {
 }
 
 // ========================================
-// 9. 生成31 × 15矩阵
+// 9. 生成15*30矩阵
 // ========================================
+
 
 function renderMatrix() {
 
@@ -396,39 +397,37 @@ function renderMatrix() {
 
     headerRow.appendChild(corner);
 
-    // 横向15个标题
-    COLUMN_LABELS.forEach(label => {
+    // 横向：00 - 30
+    for (let r = 0; r < ROW_COUNT; r++) {
 
         const th = document.createElement("th");
 
         th.className = "column-header";
-        th.textContent = label;
-        th.title = label;
+        th.textContent = String(r).padStart(2, "0");
 
         headerRow.appendChild(th);
-    });
+    }
 
     thead.appendChild(headerRow);
     matrix.appendChild(thead);
 
     const tbody = document.createElement("tbody");
 
-    // 纵向00 - 30
-    for (let r = 0; r < ROW_COUNT; r++) {
+    // 纵向：15个自定义名称
+    for (let c = 0; c < COLUMN_COUNT; c++) {
 
         const tr = document.createElement("tr");
 
         const rowHeader = document.createElement("th");
 
         rowHeader.className = "row-header";
-
-        rowHeader.textContent =
-            String(r).padStart(2, "0");
+        rowHeader.textContent = COLUMN_LABELS[c];
+        rowHeader.title = COLUMN_LABELS[c];
 
         tr.appendChild(rowHeader);
 
-        // 每行15个格子
-        for (let c = 0; c < COLUMN_COUNT; c++) {
+        // 横向31个格子
+        for (let r = 0; r < ROW_COUNT; r++) {
 
             const td = document.createElement("td");
 
@@ -726,7 +725,7 @@ function updateInfo() {
 
     document.getElementById("gridInfo")
         .textContent =
-        `${ROW_COUNT} 行 × ${COLUMN_COUNT} 列` +
+        `${COLUMN_COUNT} 行 × ${ROW_COUNT} 列` +
         ` | 已填充 ${filled} / ${ROW_COUNT * COLUMN_COUNT}`;
 }
 
